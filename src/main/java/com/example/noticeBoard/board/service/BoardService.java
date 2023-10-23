@@ -73,18 +73,7 @@ public class BoardService {
     }
 
     public void deleteBoard(Long id,String password) {
-        Optional<Board> optionalBoard = boardRepository.findById(id);
-        //// 게시글 존재 여부 확인
-        if (optionalBoard.isPresent()) {
-            Board board = optionalBoard.get();
-            // 비밀 번호 일치 여부 확인
-            if (board.getPassword().equals(password)) {
-                boardRepository.deleteById(id);
-            } else { // 비밀 번호가 일치 하지 않을 경우 예외 처리
-                throw new RuntimeException("Password does not match");
-            }
-        } else {
-            throw new RuntimeException("Board not found");
-        }
+
+        boardRepository.deleteById(id);
     }
 }
